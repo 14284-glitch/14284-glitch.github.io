@@ -46,15 +46,16 @@
 
   <section class="panel active" id="learn">
     <div class="card">
-      <div class="lesson-head"><div><h2>短母音 a：cat</h2><p>聽音 → 看嘴型 → 拆音 → 合音 → 錄音</p></div><span class="badge">通過門檻 80%</span></div>
+      <div class="lesson-head"><div><h2 id="lessonTitle">短母音 a：cat</h2><p>聽音 → 看嘴型 → 拆音 → 合音 → 錄音</p></div><span class="badge" id="wordProgress">第 1 / 5 字・通過門檻 80%</span></div>
       <div class="phonics">
         <div><div class="letter">A a</div><div class="ipa">/æ/<br><small>嘴巴張開、舌頭放低</small></div></div>
-        <div class="word-box"><div class="emoji">🐱</div><div class="word">c<em>a</em>t</div><div class="actions"><button class="btn" id="hearWord">🔊 聽示範</button><button class="btn" id="blendWord">🧩 拆音合音</button></div></div>
+        <div class="word-box"><div class="emoji" id="lessonEmoji">🐱</div><div class="word" id="lessonWord">c<em>a</em>t</div><div class="actions"><button class="btn" id="hearWord">🔊 聽示範</button><button class="btn" id="blendWord">🧩 拆音合音</button></div></div>
       </div>
-      <div class="sound-parts"><button class="sound" data-say="K">c<br><small>/k/</small></button><span>＋</span><button class="sound" data-say="Ah">a<br><small>/æ/</small></button><span>＋</span><button class="sound" data-say="T">t<br><small>/t/</small></button></div>
+      <div class="sound-parts" id="soundParts"><button class="sound" data-say="K">c<br><small>/k/</small></button><span>＋</span><button class="sound" data-say="Ah">a<br><small>/æ/</small></button><span>＋</span><button class="sound" data-say="T">t<br><small>/t/</small></button></div>
       <div class="meter"><span id="scoreMeter"></span></div>
       <div class="feedback" id="recordFeedback">先聽示範，再按下麥克風說 cat</div>
       <div class="actions"><button class="btn primary" id="recordBtn">🎙️ 錄音並判斷</button><audio id="playback" class="hidden" controls aria-label="播放孩子的發音"></audio></div>
+      <div class="actions hidden" id="stageActions"><button class="btn primary" id="nextWord">立即進入下一個字</button><button class="btn" id="saveStage">儲存目前階段</button></div>
       <div class="quiz">
         <button class="btn quizChoice" data-correct="1"><span class="qemoji">🐱</span>cat /æ/</button>
         <button class="btn quizChoice"><span class="qemoji">🐶</span>dog /ɒ/</button>
@@ -85,21 +86,36 @@
   const avatars=['🐼','🐰','🐯','🐨','🐧','🦁','🦊','🐬','🦉','🦅'];
   const levels=[['Lv.0 啟蒙','字母音、嘴型、100個圖像單字'],['Lv.1 拼讀','自然拼讀、CVC、300字'],['Lv.2 基礎 A1','生活句型、800字'],['Lv.3 日常 A2','完整對話、1,500字'],['Lv.4 進階 B1','職場入門、TOEIC 450+'],['Lv.5 職場 B1+','TOEIC 600+'],['Lv.6 高階 B2','TOEIC 730+'],['Lv.7 達標','TOEIC 850']];
   const state={student:Number(sessionStorage.getItem('fox-student')||0),stars:0};
+  const lessonWords=[
+    {word:'cat',emoji:'🐱',parts:[['c','K','/k/'],['a','Ah','/æ/'],['t','T','/t/']]},
+    {word:'map',emoji:'🗺️',parts:[['m','M','/m/'],['a','Ah','/æ/'],['p','P','/p/']]},
+    {word:'hat',emoji:'🎩',parts:[['h','H','/h/'],['a','Ah','/æ/'],['t','T','/t/']]},
+    {word:'bag',emoji:'🎒',parts:[['b','B','/b/'],['a','Ah','/æ/'],['g','G','/g/']]},
+    {word:'ant',emoji:'🐜',parts:[['a','Ah','/æ/'],['n','N','/n/'],['t','T','/t/']]}
+  ];
+  let currentWordIndex=0,currentWord=lessonWords[0],advanceTimer,justPassed=false;
+  const progressKey=()=>`fox-stage-${state.student}`;
+  function renderLesson(){currentWord=lessonWords[currentWordIndex];document.querySelector('#lessonTitle').textContent=`短母音 a：${currentWord.word}`;document.querySelector('#wordProgress').textContent=`第 ${currentWordIndex+1} / ${lessonWords.length} 字・通過門檻 80%`;document.querySelector('#lessonEmoji').textContent=currentWord.emoji;document.querySelector('#lessonWord').innerHTML=currentWord.word.replace('a','<em>a</em>');document.querySelector('#soundParts').innerHTML=currentWord.parts.map((p,i)=>`${i?'<span>＋</span>':''}<button class="sound" data-part="${i}">${p[0]}<br><small>${p[2]}</small></button>`).join('');document.querySelectorAll('[data-part]').forEach(b=>b.onclick=()=>say(currentWord.parts[Number(b.dataset.part)][1]));document.querySelector('#recordFeedback').textContent=`先聽示範，再按下麥克風說 ${currentWord.word}`;document.querySelector('#recordFeedback').className='feedback';document.querySelector('#scoreMeter').style.width='0';document.querySelector('#stageActions').classList.add('hidden')}
+  function loadStage(){currentWordIndex=Math.max(0,Math.min(lessonWords.length-1,Number(localStorage.getItem(progressKey())||0)));renderLesson()}
+  function saveStage(){localStorage.setItem(progressKey(),String(currentWordIndex));clearTimeout(advanceTimer);document.querySelector('#stageActions').classList.add('hidden');document.querySelector('#recordFeedback').textContent=`已儲存到第 ${currentWordIndex+1} 個字：${currentWord.word}`}
+  function nextWord(){clearTimeout(advanceTimer);currentWordIndex=(currentWordIndex+1)%lessonWords.length;localStorage.setItem(progressKey(),String(currentWordIndex));renderLesson()}
   const key=()=>`fox-errors-${state.student}`;
   const loadErrors=()=>{try{return JSON.parse(localStorage.getItem(key())||'{}')}catch{return {}}};
   const saveErrors=e=>localStorage.setItem(key(),JSON.stringify(e));
   const addError=(type)=>{const e=loadErrors();e[type]=(e[type]||0)+1;saveErrors(e);renderErrors()};
-  const improve=(type)=>{const e=loadErrors();if(e[type])e[type]=Math.max(0,e[type]-1);saveErrors(e);renderErrors()};
+  const improve=(type)=>{const e=loadErrors();if(e[type])e[type]=Math.max(0,e[type]-1);saveErrors(e);renderErrors();if(type==='vowel')justPassed=true};
   const say=(text,rate=.7)=>{if(!speechSynthesis)return; speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;speechSynthesis.speak(u)};
-  const similarity=(a,b)=>{a=a.toLowerCase().replace(/[^a-z]/g,'');b=b.toLowerCase().replace(/[^a-z]/g,'');if(!a||!b)return 0;const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return Math.max(0,Math.round((1-d[a.length][b.length]/Math.max(a.length,b.length))*100))};
+  const similarity=(a,b)=>{a=currentWord.word.toLowerCase().replace(/[^a-z]/g,'');b=b.toLowerCase().replace(/[^a-z]/g,'');if(!a||!b)return 0;const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return Math.max(0,Math.round((1-d[a.length][b.length]/Math.max(a.length,b.length))*100))};
   const catalog={vowel:{name:'cat 的 /æ/ 發音',tip:'嘴巴張開、舌頭放低，再念 /k/—/æ/—/t/。',say:'K. Ah. T. Cat.'},silence:{name:'麥克風沒有聲音',tip:'靠近麥克風，在安靜環境清楚念 cat。',say:'Cat.'},listen:{name:'短母音 /æ/ 聽辨',tip:'比較 cat、dog、fish 的中間母音。',say:'Cat. Dog. Fish. Cat.'}};
   function renderErrors(){const e=loadErrors(),entries=Object.entries(e).filter(([,n])=>n>0).sort((a,b)=>b[1]-a[1]);document.querySelector('#errorCount').textContent=`${entries.length} 項`;document.querySelector('#mistakeList').innerHTML=entries.length?entries.map(([k,n])=>`<div class="mistake"><div><strong>${catalog[k].name}</strong><br><small>${catalog[k].tip}</small></div><span class="count">錯 ${n} 次</span><button class="btn listen" data-error="${k}">🔊 練習</button></div>`).join(''):'<div class="feedback good">目前沒有錯題，繼續保持！</div>';document.querySelectorAll('[data-error]').forEach(b=>b.onclick=()=>say(catalog[b.dataset.error].say))}
-  function renderStudent(){document.querySelector('#studentSelect').value=state.student;document.querySelector('#stars').textContent=`⭐ ${state.stars}`;document.querySelector('#roster').innerHTML=students.map((n,i)=>`<div class="person ${i===state.student?'active':''}"><span>${avatars[i]}</span>${n}${i===state.student?'<small>目前登入</small>':''}</div>`).join('');renderErrors()}
+  function renderStudent(){document.querySelector('#studentSelect').value=state.student;document.querySelector('#stars').textContent=`⭐ ${state.stars}`;document.querySelector('#roster').innerHTML=students.map((n,i)=>`<div class="person ${i===state.student?'active':''}"><span>${avatars[i]}</span>${n}${i===state.student?'<small>目前登入</small>':''}</div>`).join('');renderErrors();loadStage();if(justPassed){justPassed=false;document.querySelector('#recordFeedback').textContent='發音通過！3秒後自動進入下一個字，或選擇儲存目前階段。';document.querySelector('#recordFeedback').className='feedback good';document.querySelector('#stageActions').classList.remove('hidden');advanceTimer=setTimeout(nextWord,3000)}}
   function switchStudent(i){state.student=i;state.stars=0;renderStudent()}
   document.querySelector('#studentSelect').innerHTML=students.map((n,i)=>`<option value="${i}">${n}</option>`).join('');
   document.querySelector('#logoutBtn').onclick=()=>{sessionStorage.removeItem('fox-login');sessionStorage.removeItem('fox-student');learningApp.classList.add('locked');loginScreen.classList.remove('hidden');document.querySelector('#password').value='';document.querySelector('#loginStudent').value=''};
   document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===b.dataset.panel))});
-  document.querySelector('#hearWord').onclick=()=>say('Cat.');document.querySelector('#blendWord').onclick=()=>say('K. Ah. T. Cat.',.58);document.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(b.dataset.say));
+  document.querySelector('#hearWord').onclick=()=>say(currentWord.word+'.');document.querySelector('#blendWord').onclick=()=>{const oneRound=currentWord.parts.map(p=>p[1]).join('. ')+'. '+currentWord.word+'. ';say(oneRound.repeat(3),.4)};document.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(b.dataset.say));
+  document.querySelector('#nextWord').onclick=nextWord;document.querySelector('#saveStage').onclick=saveStage;
+  new MutationObserver(()=>{const out=document.querySelector('#recordFeedback');if(out.textContent==='正在聽…請說 cat'&&currentWord.word!=='cat')out.textContent=`正在聽…請說 ${currentWord.word}`}).observe(document.querySelector('#recordFeedback'),{childList:true});
   document.querySelectorAll('.quizChoice').forEach(b=>b.onclick=()=>{const out=document.querySelector('#quizFeedback');if(b.dataset.correct){out.textContent='答對了！cat 中間是 /æ/ ⭐';out.className='feedback good';state.stars++;improve('listen');renderStudent()}else{out.textContent='再聽一次，找出嘴巴張開的 /æ/。';out.className='feedback bad';addError('listen')}});
   document.querySelector('#clearErrors').onclick=()=>{saveErrors({});renderErrors()};
   document.querySelector('#levelGrid').innerHTML=levels.map((l,i)=>`<button class="level ${i===0?'current':''}" data-level="${i}"><strong>${l[0]}</strong><small>${l[1]}</small></button>`).join('');document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-level]').forEach(x=>x.classList.toggle('current',x===b));document.querySelector('#levelDetail').textContent=`${levels[b.dataset.level][0]}：${levels[b.dataset.level][1]}`});
