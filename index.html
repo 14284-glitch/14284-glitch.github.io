@@ -7,6 +7,7 @@
   <style>
     :root{--bg:#fffaf2;--paper:#fff;--ink:#263238;--muted:#66757d;--primary:#ef6c45;--primary2:#ff9b61;--soft:#fff0e5;--green:#2e9b72;--red:#d94c4c;--line:#eadfd5;--shadow:0 12px 34px rgba(78,52,36,.09)}
     *{box-sizing:border-box} body{margin:0;background:linear-gradient(145deg,#fffaf2,#f5fbff);color:var(--ink);font-family:system-ui,"Noto Sans TC",sans-serif} button,select,input{font:inherit} button{cursor:pointer}.app{max-width:1100px;margin:auto;padding:20px}.app.locked{display:none}.login{min-height:100vh;display:grid;place-items:center;padding:20px}.login.hidden{display:none}.login-box{width:min(420px,100%);background:var(--paper);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:30px;text-align:center}.login-box .logo{margin:0 auto 12px}.login-box h1{font-size:24px;margin:0}.login-box p{color:var(--muted)}.login-box input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;margin:8px 0}.login-box button{width:100%;margin-top:8px}.login-error{min-height:24px;color:var(--red);font-weight:700}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800}.logo{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--soft);font-size:28px}.student-select{display:flex;align-items:center;gap:8px}.student-select select{border:1px solid var(--line);border-radius:12px;padding:10px 34px 10px 12px;background:var(--paper)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat,.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.stat{padding:14px 16px}.stat small{display:block;color:var(--muted)}.stat strong{font-size:20px}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}.tab,.btn{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:11px 14px;font-weight:700}.tab.active,.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}.panel{display:none}.panel.active{display:block}.card{padding:22px}.lesson-head{display:flex;justify-content:space-between;align-items:start;gap:14px;flex-wrap:wrap}.lesson-head h2,.lesson-head p{margin:0}.lesson-head p{color:var(--muted);margin-top:4px}.badge{background:var(--soft);color:#9a472c;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}.phonics{display:grid;grid-template-columns:.8fr 1.2fr;gap:20px;align-items:center;margin-top:22px}.letter{text-align:center;font-size:100px;line-height:1;color:var(--primary);font-weight:900}.ipa{text-align:center;font-size:28px}.word-box{text-align:center;padding:24px;background:var(--soft);border-radius:18px}.emoji{font-size:78px}.word{font-size:38px;font-weight:900;letter-spacing:2px}.word em{font-style:normal;color:var(--primary)}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}.feedback{min-height:30px;text-align:center;margin:14px 0;font-weight:700}.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}audio{width:min(420px,100%)}.meter{height:10px;background:#eee4dc;border-radius:999px;overflow:hidden}.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));width:0;transition:.3s}.sound-parts{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0}.sound{border:0;border-radius:14px;background:var(--soft);padding:16px 20px;font-size:24px;font-weight:800}.quiz{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.quiz button{min-height:120px}.quiz .qemoji{display:block;font-size:48px}.mistakes{display:grid;gap:10px;margin-top:18px}.mistake{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:12px 0}.mistake:last-child{border:0}.count{color:var(--red);font-weight:800}.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.level{border:1px solid var(--line);border-radius:15px;padding:14px;background:var(--paper);text-align:left}.level.current{border:2px solid var(--primary);background:var(--soft)}.level strong,.level small{display:block}.level small{color:var(--muted);margin-top:5px}.roster{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}.person{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:14px;text-align:center}.person.active{border:2px solid var(--primary);background:var(--soft)}.person span{display:block;font-size:28px}.note{color:var(--muted);font-size:13px;margin-top:12px}.hidden{display:none!important}@media(max-width:700px){.app{padding:12px}.stats{grid-template-columns:1fr}.tabs{grid-template-columns:repeat(2,1fr)}.phonics{grid-template-columns:1fr}.quiz{grid-template-columns:1fr}.levels{grid-template-columns:repeat(2,1fr)}.roster{grid-template-columns:repeat(2,1fr)}.letter{font-size:78px}.mistake{grid-template-columns:1fr auto}.mistake .listen{grid-column:1/-1}}
+    [data-zhuyin]::after{content:none}
   </style>
 </head>
 <body>
@@ -29,48 +30,48 @@
 </section>
 <main class="app locked" id="learningApp">
   <header class="top">
-      <div class="brand"><span class="logo">🦊</span>自主練習英文</div>
-      <div class="student-select"><label>學習者 <select id="studentSelect" disabled></select></label><button class="btn" id="logoutBtn">登出</button></div>
+      <div class="brand" data-zhuyin="ㄗˋ ㄓㄨˇ ㄌㄧㄢˋ ㄒㄧˊ ㄧㄥ ㄨㄣˊ"><span class="logo">🦊</span>自主練習英文</div>
+      <div class="student-select"><label data-zhuyin="ㄒㄩㄝˊ ㄒㄧˊ ㄓㄜˇ">學習者 <select id="studentSelect" disabled></select></label><button class="btn" id="logoutBtn" data-zhuyin="ㄉㄥ ㄔㄨ">登出</button></div>
   </header>
   <section class="stats">
-    <div class="stat"><small>目前程度</small><strong id="currentLevel">Lv.0 啟蒙</strong></div>
-    <div class="stat"><small>今天獲得</small><strong id="stars">⭐ 0</strong></div>
-    <div class="stat"><small>待加強</small><strong id="errorCount">0 項</strong></div>
+    <div class="stat"><small data-zhuyin="ㄇㄨˋ ㄑㄧㄢˊ ㄔㄥˊ ㄉㄨˋ">目前程度</small><strong id="currentLevel" data-zhuyin="ㄑㄧˇ ㄇㄥˊ">Lv.0 啟蒙</strong></div>
+    <div class="stat"><small data-zhuyin="ㄐㄧㄣ ㄊㄧㄢ ㄏㄨㄛˋ ㄉㄜˊ">今天獲得</small><strong id="stars">⭐ 0</strong></div>
+    <div class="stat"><small data-zhuyin="ㄉㄞˋ ㄐㄧㄚ ㄑㄧㄤˊ">待加強</small><strong id="errorCount">0 項</strong></div>
   </section>
   <nav class="tabs" aria-label="主要功能">
-    <button class="tab active" data-panel="learn">🔤 發音學習</button>
-    <button class="tab" data-panel="practice">🎯 常錯練習</button>
-    <button class="tab" data-panel="roadmap">🗺️ 程度地圖</button>
-    <button class="tab" data-panel="classroom">👩‍🏫 學習者</button>
+    <button class="tab active" data-panel="learn" data-zhuyin="ㄈㄚ ㄧㄣ ㄒㄩㄝˊ ㄒㄧˊ">🔤 發音學習</button>
+    <button class="tab" data-panel="practice" data-zhuyin="ㄔㄤˊ ㄘㄨㄛˋ ㄌㄧㄢˋ ㄒㄧˊ">🎯 常錯練習</button>
+    <button class="tab" data-panel="roadmap" data-zhuyin="ㄔㄥˊ ㄉㄨˋ ㄉㄧˋ ㄊㄨˊ">🗺️ 程度地圖</button>
+    <button class="tab" data-panel="classroom" data-zhuyin="ㄒㄩㄝˊ ㄒㄧˊ ㄓㄜˇ">👩‍🏫 學習者</button>
   </nav>
 
   <section class="panel active" id="learn">
     <div class="card">
-      <div class="lesson-head"><div><h2 id="lessonTitle">短母音 a：cat</h2><p>聽音 → 看嘴型 → 拆音 → 合音 → 錄音</p></div><span class="badge" id="wordProgress">第 1 / 5 字・通過門檻 80%</span></div>
+      <div class="lesson-head"><div><h2 id="lessonTitle" data-zhuyin="ㄉㄨㄢˇ ㄇㄨˇ ㄧㄣ">短母音 a：cat</h2><p data-zhuyin="ㄊㄧㄥ ㄧㄣ → ㄎㄢˋ ㄗㄨㄟˇ ㄒㄧㄥˊ → ㄔㄞ ㄧㄣ → ㄏㄜˊ ㄧㄣ → ㄌㄨˋ ㄧㄣ">聽音 → 看嘴型 → 拆音 → 合音 → 錄音</p></div><span class="badge" id="wordProgress" data-zhuyin="ㄉㄧˋ ㄧ ㄍㄜ˙ ㄗˋ・ㄊㄨㄥ ㄍㄨㄛˋ ㄇㄣˊ ㄎㄢˇ">第 1 / 5 字・通過門檻 80%</span></div>
       <div class="phonics">
-        <div><div class="letter">A a</div><div class="ipa">/æ/<br><small>嘴巴張開、舌頭放低</small></div></div>
-        <div class="word-box"><div class="emoji" id="lessonEmoji">🐱</div><div class="word" id="lessonWord">c<em>a</em>t</div><div class="actions"><button class="btn" id="hearWord">🔊 聽示範</button><button class="btn" id="blendWord">🧩 拆音合音</button></div></div>
+        <div><div class="letter">A a</div><div class="ipa">/æ/<br><small data-zhuyin="ㄗㄨㄟˇ ㄅㄚ ㄓㄤ ㄎㄞ、ㄕㄜˊ ㄊㄡ˙ ㄈㄤˋ ㄉㄧ">嘴巴張開、舌頭放低</small></div></div>
+        <div class="word-box"><div class="emoji" id="lessonEmoji">🐱</div><div class="word" id="lessonWord">c<em>a</em>t</div><div id="lessonTranslation" data-zhuyin="ㄓㄨㄥ ㄨㄣˊ：ㄇㄠ" style="font-weight:800;margin-top:6px">中文：貓</div><div id="lessonTip" data-zhuyin="ㄈㄚ ㄧㄣ ㄓㄨㄥˋ ㄉㄧㄢˇ：ㄓㄨㄥ ㄐㄧㄢ ㄉㄜ˙ ㄇㄨˇ ㄧㄣ，ㄗㄨㄟˇ ㄅㄚ ㄓㄤ ㄎㄞ、ㄕㄜˊ ㄊㄡ˙ ㄈㄤˋ ㄉㄧ" style="color:var(--muted);margin-top:8px">發音重點：中間 a 發 /æ/，嘴巴張開、舌頭放低。</div><div class="actions"><button class="btn" id="hearWord" data-zhuyin="ㄊㄧㄥ ㄕˋ ㄈㄢˋ">🔊 聽示範</button><button class="btn" id="blendWord" data-zhuyin="ㄔㄞ ㄧㄣ ㄏㄜˊ ㄧㄣ">🧩 拆音合音</button></div></div>
       </div>
       <div class="sound-parts" id="soundParts"><button class="sound" data-say="K">c<br><small>/k/</small></button><span>＋</span><button class="sound" data-say="Ah">a<br><small>/æ/</small></button><span>＋</span><button class="sound" data-say="T">t<br><small>/t/</small></button></div>
       <div class="meter"><span id="scoreMeter"></span></div>
-      <div class="feedback" id="recordFeedback">先聽示範，再按下麥克風說 cat</div>
-      <div class="actions"><button class="btn primary" id="recordBtn">🎙️ 錄音並判斷</button><audio id="playback" class="hidden" controls aria-label="播放孩子的發音"></audio></div>
-      <div class="actions hidden" id="stageActions"><button class="btn primary" id="nextWord">立即進入下一個字</button><button class="btn" id="saveStage">儲存目前階段</button></div>
+      <div class="feedback" id="recordFeedback" data-zhuyin="ㄒㄧㄢ ㄊㄧㄥ ㄕˋ ㄈㄢˋ，ㄗㄞˋ ㄢˋ ㄒㄧㄚˋ ㄇㄞˋ ㄎㄜˋ ㄈㄥ ㄕㄨㄛ">先聽示範，再按下麥克風說 cat</div>
+      <div class="actions"><button class="btn primary" id="recordBtn" data-zhuyin="ㄌㄨˋ ㄧㄣ ㄅㄧㄥˋ ㄆㄢˋ ㄉㄨㄢˋ">🎙️ 錄音並判斷</button><audio id="playback" class="hidden" controls aria-label="播放孩子的發音"></audio></div>
+      <div class="actions hidden" id="stageActions"><button class="btn primary" id="nextWord" data-zhuyin="ㄌㄧˋ ㄐㄧˊ ㄐㄧㄣˋ ㄖㄨˋ ㄒㄧㄚˋ ㄧ ㄍㄜ˙ ㄗˋ">立即進入下一個字</button><button class="btn" id="saveStage" data-zhuyin="ㄔㄨˊ ㄘㄨㄣˊ ㄇㄨˋ ㄑㄧㄢˊ ㄐㄧㄝ ㄉㄨㄢˋ">儲存目前階段</button></div>
       <div class="quiz" id="quizCards"></div>
-      <div class="feedback" id="quizFeedback">先完成錄音，才能開始圖卡挑戰</div>
+      <div class="feedback" id="quizFeedback" data-zhuyin="ㄒㄧㄢ ㄨㄢˊ ㄔㄥˊ ㄌㄨˋ ㄧㄣ，ㄘㄞˊ ㄋㄥˊ ㄎㄞ ㄕˇ ㄊㄨˊ ㄎㄚˇ ㄊㄧㄠˇ ㄓㄢˋ">先完成錄音，才能開始圖卡挑戰</div>
     </div>
   </section>
 
   <section class="panel" id="practice">
-    <div class="card"><div class="lesson-head"><div><h2>我的常錯練習</h2><p>錯得越多，越優先出現；答對後會逐步減少。</p></div><button class="btn" id="clearErrors">清除紀錄</button></div><div class="mistakes" id="mistakeList"></div></div>
+    <div class="card"><div class="lesson-head"><div><h2 data-zhuyin="ㄨㄛˇ ㄉㄜ˙ ㄔㄤˊ ㄘㄨㄛˋ ㄌㄧㄢˋ ㄒㄧˊ">我的常錯練習</h2><p data-zhuyin="ㄘㄨㄛˋ ㄉㄜ˙ ㄩㄝˋ ㄉㄨㄛ，ㄩㄝˋ ㄧㄡ ㄒㄧㄢ ㄔㄨ ㄒㄧㄢˋ；ㄉㄚˊ ㄉㄨㄟˋ ㄏㄡˋ ㄏㄨㄟˋ ㄓㄨˊ ㄅㄨˋ ㄐㄧㄢˇ ㄕㄠˇ。">錯得越多，越優先出現；答對後會逐步減少。</p></div><button class="btn" id="clearErrors" data-zhuyin="ㄑㄧㄥ ㄔㄨˊ ㄐㄧˋ ㄌㄨˋ">清除紀錄</button></div><div class="mistakes" id="mistakeList"></div></div>
   </section>
 
   <section class="panel" id="roadmap">
-    <div class="card"><div class="lesson-head"><div><h2>零基礎到 TOEIC 850</h2><p>達成升級條件後再進入下一階段。</p></div><span class="badge">8個階段</span></div><div class="levels" id="levelGrid"></div><div class="feedback" id="levelDetail"></div></div>
+    <div class="card"><div class="lesson-head"><div><h2 data-zhuyin="ㄌㄧㄥˊ ㄐㄧ ㄔㄨˇ ㄉㄠˋ">零基礎到 TOEIC 850</h2><p data-zhuyin="ㄉㄚˊ ㄔㄥˊ ㄕㄥ ㄐㄧˊ ㄊㄧㄠˊ ㄐㄧㄢˋ ㄏㄡˋ ㄗㄞˋ ㄐㄧㄣˋ ㄖㄨˋ ㄒㄧㄚˋ ㄧ ㄐㄧㄝ ㄉㄨㄢˋ。">達成升級條件後再進入下一階段。</p></div><span class="badge" data-zhuyin="ㄅㄚ ㄍㄜ˙ ㄐㄧㄝ ㄉㄨㄢˋ">8個階段</span></div><div class="levels" id="levelGrid"></div><div class="feedback" id="levelDetail"></div></div>
   </section>
 
   <section class="panel" id="classroom">
-    <div class="card"><div class="lesson-head"><div><h2>10位學習者</h2><p>每位學習者的進度與錯題分開保存。</p></div></div><div class="roster" id="roster"></div><p class="note">此試作版的資料保存在目前瀏覽器；正式多人系統需使用帳號與雲端資料庫。</p></div>
+    <div class="card"><div class="lesson-head"><div><h2 data-zhuyin="ㄕˊ ㄨㄟˋ ㄒㄩㄝˊ ㄒㄧˊ ㄓㄜˇ">10位學習者</h2><p data-zhuyin="ㄇㄟˇ ㄨㄟˋ ㄒㄩㄝˊ ㄒㄧˊ ㄓㄜˇ ㄉㄜ˙ ㄐㄧㄣˋ ㄉㄨˋ ㄩˇ ㄘㄨㄛˋ ㄊㄧˊ ㄈㄣ ㄎㄞ ㄅㄠˇ ㄘㄨㄣˊ。">每位學習者的進度與錯題分開保存。</p></div></div><div class="roster" id="roster"></div><p class="note" data-zhuyin="ㄘˇ ㄕˋ ㄗㄨㄛˋ ㄅㄢˇ ㄉㄜ˙ ㄗ ㄌㄧㄠˋ ㄅㄠˇ ㄘㄨㄣˊ ㄗㄞˋ ㄇㄨˋ ㄑㄧㄢˊ ㄌㄧㄡˊ ㄌㄢˇ ㄑㄧˋ；ㄓㄥˋ ㄕˋ ㄉㄨㄛ ㄖㄣˊ ㄒㄧˋ ㄊㄨㄥˇ ㄒㄩ ㄕˇ ㄩㄥˋ ㄓㄤˋ ㄏㄠˋ ㄩˇ ㄩㄣˊ ㄉㄨㄢ ㄗ ㄌㄧㄠˋ ㄎㄨˋ。">此試作版的資料保存在目前瀏覽器；正式多人系統需使用帳號與雲端資料庫。</p></div>
   </section>
 </main>
 <script>
@@ -79,21 +80,23 @@
   if(sessionStorage.getItem('fox-login')==='ok'&&sessionStorage.getItem('fox-student')!==null)unlock();
   document.querySelector('#loginForm').onsubmit=e=>{e.preventDefault();const input=document.querySelector('#password'),chosen=document.querySelector('#loginStudent').value,expected=chosen===''?'':String(Number(chosen)+1).padStart(2,'0');if(chosen!==''&&input.value===expected){sessionStorage.setItem('fox-login','ok');sessionStorage.setItem('fox-student',chosen);document.querySelector('#loginError').textContent='';unlock();state.student=Number(chosen);renderStudent()}else{document.querySelector('#loginError').textContent=chosen===''?'請先選擇學習者。':'密碼錯誤，請重新輸入。';input.select()}};
   const students=['01 仁偉','02 怡恩','03 雨葳','04 可芸','05 星岑','06 若綺','07 晨熙','08 晨楷','09 測試1','10 測試2'];
+  const studentZhuyin=['ㄖㄣˊ ㄨㄟˇ','ㄧˊ ㄣ','ㄩˇ ㄨㄟ','ㄎㄜˇ ㄩㄣˊ','ㄒㄧㄥ ㄘㄣˊ','ㄖㄨㄛˋ ㄑㄧˇ','ㄔㄣˊ ㄒㄧ','ㄔㄣˊ ㄎㄞˇ','ㄘㄜˋ ㄕˋ ㄧ','ㄘㄜˋ ㄕˋ ㄦˋ'];
   const avatars=['🐼','🐰','🐯','🐨','🐧','🦁','🦊','🐬','🦉','🦅'];
   const levels=[['Lv.0 啟蒙','字母音、嘴型、100個圖像單字'],['Lv.1 拼讀','自然拼讀、CVC、300字'],['Lv.2 基礎 A1','生活句型、800字'],['Lv.3 日常 A2','完整對話、1,500字'],['Lv.4 進階 B1','職場入門、TOEIC 450+'],['Lv.5 職場 B1+','TOEIC 600+'],['Lv.6 高階 B2','TOEIC 730+'],['Lv.7 達標','TOEIC 850']];
   const state={student:Number(sessionStorage.getItem('fox-student')||0),stars:0};
   const lessonWords=[
-    {word:'cat',emoji:'🐱',parts:[['c','K','/k/'],['a','Ah','/æ/'],['t','T','/t/']]},
-    {word:'map',emoji:'🗺️',parts:[['m','M','/m/'],['a','Ah','/æ/'],['p','P','/p/']]},
-    {word:'hat',emoji:'🎩',parts:[['h','H','/h/'],['a','Ah','/æ/'],['t','T','/t/']]},
-    {word:'bag',emoji:'🎒',parts:[['b','B','/b/'],['a','Ah','/æ/'],['g','G','/g/']]},
-    {word:'ant',emoji:'🐜',parts:[['a','Ah','/æ/'],['n','N','/n/'],['t','T','/t/']]}
+    {word:'cat',emoji:'🐱',zh:'貓',zhuyin:'ㄇㄠ',tip:'中間 a 發 /æ/，嘴巴張開、舌頭放低；最後 /t/ 要清楚。',tipZhuyin:'ㄓㄨㄥ ㄐㄧㄢ ㄉㄜ˙ ㄇㄨˇ ㄧㄣ，ㄗㄨㄟˇ ㄅㄚ ㄓㄤ ㄎㄞ、ㄕㄜˊ ㄊㄡ˙ ㄈㄤˋ ㄉㄧ；ㄗㄨㄟˋ ㄏㄡˋ ㄧㄠˋ ㄑㄧㄥ ㄔㄨˇ。',parts:[['c','K','/k/'],['a','Ah','/æ/'],['t','T','/t/']]},
+    {word:'map',emoji:'🗺️',zh:'地圖',zhuyin:'ㄉㄧˋ ㄊㄨˊ',tip:'中間 a 發 /æ/；最後 /p/ 要閉唇後輕輕送氣。',tipZhuyin:'ㄓㄨㄥ ㄐㄧㄢ ㄉㄜ˙ ㄇㄨˇ ㄧㄣ；ㄗㄨㄟˋ ㄏㄡˋ ㄧㄠˋ ㄅㄧˋ ㄔㄨㄣˊ ㄏㄡˋ ㄑㄧㄥ ㄑㄧㄥ ㄙㄨㄥˋ ㄑㄧˋ。',parts:[['m','M','/m/'],['a','Ah','/æ/'],['p','P','/p/']]},
+    {word:'hat',emoji:'🎩',zh:'帽子',zhuyin:'ㄇㄠˋ ㄗ˙',tip:'開頭 /h/ 輕輕吐氣，中間 a 發 /æ/；最後 /t/ 要清楚。',tipZhuyin:'ㄎㄞ ㄊㄡˊ ㄑㄧㄥ ㄑㄧㄥ ㄊㄨˇ ㄑㄧˋ，ㄓㄨㄥ ㄐㄧㄢ ㄉㄜ˙ ㄇㄨˇ ㄧㄣ；ㄗㄨㄟˋ ㄏㄡˋ ㄧㄠˋ ㄑㄧㄥ ㄔㄨˇ。',parts:[['h','H','/h/'],['a','Ah','/æ/'],['t','T','/t/']]},
+    {word:'bag',emoji:'🎒',zh:'袋子／書包',zhuyin:'ㄉㄞˋ ㄗ˙／ㄕㄨ ㄅㄠ',tip:'中間 a 發 /æ/；最後 /g/ 要保留濁音，不要省略。',tipZhuyin:'ㄓㄨㄥ ㄐㄧㄢ ㄉㄜ˙ ㄇㄨˇ ㄧㄣ；ㄗㄨㄟˋ ㄏㄡˋ ㄧㄠˋ ㄅㄠˇ ㄌㄧㄡˊ ㄓㄨㄛˊ ㄧㄣ，ㄅㄨˊ ㄧㄠˋ ㄕㄥˇ ㄌㄩㄝˋ。',parts:[['b','B','/b/'],['a','Ah','/æ/'],['g','G','/g/']]},
+    {word:'ant',emoji:'🐜',zh:'螞蟻',zhuyin:'ㄇㄚˇ ㄧˇ',tip:'開頭 a 發 /æ/，嘴巴先張開；結尾 /nt/ 要連續而清楚。',tipZhuyin:'ㄎㄞ ㄊㄡˊ ㄉㄜ˙ ㄇㄨˇ ㄧㄣ，ㄗㄨㄟˇ ㄅㄚ ㄒㄧㄢ ㄓㄤ ㄎㄞ；ㄐㄧㄝˊ ㄨㄟˇ ㄧㄠˋ ㄌㄧㄢˊ ㄒㄩˋ ㄦˊ ㄑㄧㄥ ㄔㄨˇ。',parts:[['a','Ah','/æ/'],['n','N','/n/'],['t','T','/t/']]}
   ];
   let currentWordIndex=0,currentWord=lessonWords[0],advanceTimer,justPassed=false,recordPassed=false;
   const progressKey=()=>`fox-stage-${state.student}`;
   function renderQuiz(){const indexes=[currentWordIndex,(currentWordIndex+1)%lessonWords.length,(currentWordIndex+2)%lessonWords.length].sort(()=>Math.random()-.5);document.querySelector('#quizCards').innerHTML=indexes.map(i=>`<button class="btn quizChoice" data-choice="${i}" ${recordPassed?'':'disabled'}><span class="qemoji">${lessonWords[i].emoji}</span>${lessonWords[i].word}</button>`).join('');document.querySelectorAll('.quizChoice').forEach(button=>button.onclick=()=>{const chosen=lessonWords[Number(button.dataset.choice)];say(chosen.word+'.');const out=document.querySelector('#quizFeedback');if(chosen.word===currentWord.word){out.textContent=`答對了！${currentWord.word} 圖卡完成 ⭐`;out.className='feedback good';state.stars++;improve('listen');document.querySelector('#stageActions').classList.remove('hidden');renderStudentSummary()}else{out.textContent=`這張是 ${chosen.word}，請再找 ${currentWord.word}。`;out.className='feedback bad';addError('listen')}})}
   function renderStudentSummary(){document.querySelector('#stars').textContent=`⭐ ${state.stars}`;renderErrors()}
   function renderLesson(){recordPassed=false;currentWord=lessonWords[currentWordIndex];document.querySelector('#lessonTitle').textContent=`短母音 a：${currentWord.word}`;document.querySelector('#wordProgress').textContent=`第 ${currentWordIndex+1} / ${lessonWords.length} 字・通過門檻 80%`;document.querySelector('#lessonEmoji').textContent=currentWord.emoji;document.querySelector('#lessonWord').innerHTML=currentWord.word.replace('a','<em>a</em>');document.querySelector('#soundParts').innerHTML=currentWord.parts.map((p,i)=>`${i?'<span>＋</span>':''}<button class="sound" data-part="${i}">${p[0]}<br><small>${p[2]}</small></button>`).join('');document.querySelectorAll('[data-part]').forEach(b=>b.onclick=()=>say(currentWord.parts[Number(b.dataset.part)][0]));document.querySelector('#recordFeedback').textContent=`先聽示範，再按下麥克風說 ${currentWord.word}`;document.querySelector('#recordFeedback').className='feedback';document.querySelector('#quizFeedback').textContent='先完成錄音，才能開始圖卡挑戰';document.querySelector('#quizFeedback').className='feedback';document.querySelector('#scoreMeter').style.width='0';document.querySelector('#stageActions').classList.add('hidden');renderQuiz()}
+  new MutationObserver(()=>{const translation=document.querySelector('#lessonTranslation'),tip=document.querySelector('#lessonTip');translation.textContent=`中文：${currentWord.zh}`;translation.dataset.zhuyin=`ㄓㄨㄥ ㄨㄣˊ：${currentWord.zhuyin}`;tip.textContent=`發音重點：${currentWord.tip}`;tip.dataset.zhuyin=`ㄈㄚ ㄧㄣ ㄓㄨㄥˋ ㄉㄧㄢˇ：${currentWord.tipZhuyin}`}).observe(document.querySelector('#lessonWord'),{childList:true,subtree:true});
   function loadStage(){currentWordIndex=Math.max(0,Math.min(lessonWords.length-1,Number(localStorage.getItem(progressKey())||0)));renderLesson()}
   function saveStage(){localStorage.setItem(progressKey(),String(currentWordIndex));clearTimeout(advanceTimer);document.querySelector('#stageActions').classList.add('hidden');document.querySelector('#recordFeedback').textContent=`已儲存到第 ${currentWordIndex+1} 個字：${currentWord.word}`}
   function nextWord(){clearTimeout(advanceTimer);currentWordIndex=(currentWordIndex+1)%lessonWords.length;localStorage.setItem(progressKey(),String(currentWordIndex));renderLesson()}
@@ -110,7 +113,7 @@
   const similarity=(a,b)=>{a=currentWord.word.toLowerCase().replace(/[^a-z]/g,'');b=b.toLowerCase().replace(/[^a-z]/g,'');if(!a||!b)return 0;const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return Math.max(0,Math.round((1-d[a.length][b.length]/Math.max(a.length,b.length))*100))};
   const catalog={vowel:{name:'cat 的 /æ/ 發音',tip:'嘴巴張開、舌頭放低，再念 /k/—/æ/—/t/。',say:'K. Ah. T. Cat.'},silence:{name:'麥克風沒有聲音',tip:'靠近麥克風，在安靜環境清楚念 cat。',say:'Cat.'},listen:{name:'短母音 /æ/ 聽辨',tip:'比較 cat、dog、fish 的中間母音。',say:'Cat. Dog. Fish. Cat.'}};
   function renderErrors(){const e=loadErrors(),entries=Object.entries(e).filter(([,n])=>n>0).sort((a,b)=>b[1]-a[1]);document.querySelector('#errorCount').textContent=`${entries.length} 項`;document.querySelector('#mistakeList').innerHTML=entries.length?entries.map(([k,n])=>`<div class="mistake"><div><strong>${catalog[k].name}</strong><br><small>${catalog[k].tip}</small></div><span class="count">錯 ${n} 次</span><button class="btn listen" data-error="${k}">🔊 練習</button></div>`).join(''):'<div class="feedback good">目前沒有錯題，繼續保持！</div>';document.querySelectorAll('[data-error]').forEach(b=>b.onclick=()=>say(catalog[b.dataset.error].say))}
-  function renderStudent(){document.querySelector('#studentSelect').value=state.student;document.querySelector('#stars').textContent=`⭐ ${state.stars}`;document.querySelector('#roster').innerHTML=students.map((n,i)=>`<div class="person ${i===state.student?'active':''}"><span>${avatars[i]}</span>${n}${i===state.student?'<small>目前登入</small>':''}</div>`).join('');renderErrors();loadStage();if(justPassed){justPassed=false;recordPassed=true;document.querySelector('#recordFeedback').textContent='發音通過！請完成下面的圖卡挑戰。';document.querySelector('#recordFeedback').className='feedback good';document.querySelector('#quizFeedback').textContent=`請選出 ${currentWord.word} 的圖卡；每張圖卡都可以點擊聽發音。`;renderQuiz()}}
+  function renderStudent(){document.querySelector('#studentSelect').value=state.student;document.querySelector('#stars').textContent=`⭐ ${state.stars}`;document.querySelector('#roster').innerHTML=students.map((n,i)=>`<div class="person ${i===state.student?'active':''}" data-zhuyin="${studentZhuyin[i]}"><span>${avatars[i]}</span>${n}${i===state.student?'<small data-zhuyin="ㄇㄨˋ ㄑㄧㄢˊ ㄉㄥ ㄖㄨˋ">目前登入</small>':''}</div>`).join('');renderErrors();loadStage();if(justPassed){justPassed=false;recordPassed=true;document.querySelector('#recordFeedback').textContent='發音通過！請完成下面的圖卡挑戰。';document.querySelector('#recordFeedback').className='feedback good';document.querySelector('#quizFeedback').textContent=`請選出 ${currentWord.word} 的圖卡；每張圖卡都可以點擊聽發音。`;renderQuiz()}}
   function switchStudent(i){state.student=i;state.stars=0;renderStudent()}
   document.querySelector('#studentSelect').innerHTML=students.map((n,i)=>`<option value="${i}">${n}</option>`).join('');
   document.querySelector('#logoutBtn').onclick=()=>{sessionStorage.removeItem('fox-login');sessionStorage.removeItem('fox-student');learningApp.classList.add('locked');loginScreen.classList.remove('hidden');document.querySelector('#password').value='';document.querySelector('#loginStudent').value=''};
@@ -121,8 +124,29 @@
   document.querySelectorAll('.quizChoice').forEach(b=>b.onclick=()=>{const out=document.querySelector('#quizFeedback');if(b.dataset.correct){out.textContent='答對了！cat 中間是 /æ/ ⭐';out.className='feedback good';state.stars++;improve('listen');renderStudent()}else{out.textContent='再聽一次，找出嘴巴張開的 /æ/。';out.className='feedback bad';addError('listen')}});
   document.querySelector('#clearErrors').onclick=()=>{saveErrors({});renderErrors()};
   document.querySelector('#levelGrid').innerHTML=levels.map((l,i)=>`<button class="level ${i===0?'current':''}" data-level="${i}"><strong>${l[0]}</strong><small>${l[1]}</small></button>`).join('');document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-level]').forEach(x=>x.classList.toggle('current',x===b));document.querySelector('#levelDetail').textContent=`${levels[b.dataset.level][0]}：${levels[b.dataset.level][1]}`});
+  const levelZhuyin=['ㄑㄧˇ ㄇㄥˊ：ㄗˋ ㄇㄨˇ ㄧㄣ、ㄗㄨㄟˇ ㄒㄧㄥˊ、ㄊㄨˊ ㄒㄧㄤˋ ㄉㄢ ㄗˋ','ㄆㄧㄣ ㄉㄨˊ：ㄗˋ ㄖㄢˊ ㄆㄧㄣ ㄉㄨˊ','ㄐㄧ ㄔㄨˇ：ㄕㄥ ㄏㄨㄛˊ ㄐㄩˋ ㄒㄧㄥˊ','ㄖˋ ㄔㄤˊ：ㄨㄢˊ ㄓㄥˇ ㄉㄨㄟˋ ㄏㄨㄚˋ','ㄐㄧㄣˋ ㄐㄧㄝ：ㄓˊ ㄔㄤˇ ㄖㄨˋ ㄇㄣˊ','ㄓˊ ㄔㄤˇ','ㄍㄠ ㄐㄧㄝ','ㄉㄚˊ ㄅㄧㄠ'];
+  document.querySelectorAll('[data-level]').forEach((button,i)=>button.dataset.zhuyin=levelZhuyin[i]);
+  function updateDynamicZhuyin(){
+    const record=document.querySelector('#recordFeedback'),quiz=document.querySelector('#quizFeedback');
+    const recordText=record.textContent;
+    if(recordText.includes('正在聽'))record.dataset.zhuyin='ㄓㄥˋ ㄗㄞˋ ㄊㄧㄥ，ㄑㄧㄥˇ ㄕㄨㄛ';
+    else if(recordText.includes('通過'))record.dataset.zhuyin='ㄈㄚ ㄧㄣ ㄊㄨㄥ ㄍㄨㄛˋ！ㄑㄧㄥˇ ㄨㄢˊ ㄔㄥˊ ㄒㄧㄚˋ ㄇㄧㄢˋ ㄉㄜ˙ ㄊㄨˊ ㄎㄚˇ ㄊㄧㄠˇ ㄓㄢˋ。';
+    else if(recordText.includes('相似度'))record.dataset.zhuyin='ㄒㄧㄤ ㄙˋ ㄉㄨˋ，ㄨㄟˋ ㄉㄚˊ ㄅㄚ ㄕˊ ㄅㄞˇ ㄈㄣ ㄅㄧˇ，ㄑㄧㄥˇ ㄔㄨㄥˊ ㄒㄧㄣ ㄈㄚ ㄧㄣ。';
+    else if(recordText.includes('麥克風')||recordText.includes('聲音'))record.dataset.zhuyin='ㄇㄞˋ ㄎㄜˋ ㄈㄥ ㄏㄨㄛˋ ㄕㄥ ㄧㄣ ㄧㄡˇ ㄨㄣˋ ㄊㄧˊ，ㄑㄧㄥˇ ㄔㄨㄥˊ ㄒㄧㄣ ㄈㄚ ㄧㄣ。';
+    else if(recordText.includes('儲存'))record.dataset.zhuyin='ㄧˇ ㄔㄨˊ ㄘㄨㄣˊ ㄇㄨˋ ㄑㄧㄢˊ ㄒㄩㄝˊ ㄒㄧˊ ㄐㄧㄝ ㄉㄨㄢˋ。';
+    else record.dataset.zhuyin='ㄒㄧㄢ ㄊㄧㄥ ㄕˋ ㄈㄢˋ，ㄗㄞˋ ㄢˋ ㄒㄧㄚˋ ㄇㄞˋ ㄎㄜˋ ㄈㄥ ㄕㄨㄛ。';
+    const quizText=quiz.textContent;
+    if(quizText.includes('答對'))quiz.dataset.zhuyin='ㄉㄚˊ ㄉㄨㄟˋ ㄌㄜ˙！ㄊㄨˊ ㄎㄚˇ ㄨㄢˊ ㄔㄥˊ。';
+    else if(quizText.includes('請選出'))quiz.dataset.zhuyin='ㄑㄧㄥˇ ㄒㄩㄢˇ ㄔㄨ ㄓㄥˋ ㄑㄩㄝˋ ㄉㄜ˙ ㄊㄨˊ ㄎㄚˇ；ㄇㄟˇ ㄓㄤ ㄊㄨˊ ㄎㄚˇ ㄉㄡ ㄎㄜˇ ㄧˇ ㄊㄧㄥ ㄈㄚ ㄧㄣ。';
+    else if(quizText.includes('這張是'))quiz.dataset.zhuyin='ㄓㄜˋ ㄓㄤ ㄕˋ，ㄑㄧㄥˇ ㄗㄞˋ ㄓㄠˇ ㄧ ㄘˋ。';
+    else quiz.dataset.zhuyin='ㄒㄧㄢ ㄨㄢˊ ㄔㄥˊ ㄌㄨˋ ㄧㄣ，ㄘㄞˊ ㄋㄥˊ ㄎㄞ ㄕˇ ㄊㄨˊ ㄎㄚˇ ㄊㄧㄠˇ ㄓㄢˋ。';
+    document.querySelector('#errorCount').dataset.zhuyin='ㄉㄞˋ ㄐㄧㄚ ㄑㄧㄤˊ ㄒㄧㄤˋ ㄇㄨˋ';
+    document.querySelectorAll('.mistake').forEach(item=>item.dataset.zhuyin='ㄔㄤˊ ㄘㄨㄛˋ ㄈㄚ ㄧㄣ ㄩˇ ㄌㄧㄢˋ ㄒㄧˊ ㄊㄧˊ ㄕˋ');
+    const empty=document.querySelector('#mistakeList > .feedback');if(empty)empty.dataset.zhuyin='ㄇㄨˋ ㄑㄧㄢˊ ㄇㄟˊ ㄧㄡˇ ㄘㄨㄛˋ ㄊㄧˊ，ㄐㄧˋ ㄒㄩˋ ㄅㄠˇ ㄔˊ！';
+  }
+  new MutationObserver(updateDynamicZhuyin).observe(document.body,{childList:true,subtree:true,characterData:true});
   document.querySelector('#recordBtn').onclick=async()=>{const out=document.querySelector('#recordFeedback'),meter=document.querySelector('#scoreMeter'),audio=document.querySelector('#playback'),Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Recognition){out.textContent='此瀏覽器不支援語音判斷，請改用 Chrome 或 Edge。';out.className='feedback bad';return}let stream,recorder,chunks=[];try{stream=await navigator.mediaDevices.getUserMedia({audio:true});recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{if(chunks.length){if(audio.src)URL.revokeObjectURL(audio.src);audio.src=URL.createObjectURL(new Blob(chunks,{type:recorder.mimeType||'audio/webm'}));audio.classList.remove('hidden')}stream.getTracks().forEach(t=>t.stop())};recorder.start()}catch{out.textContent='無法使用麥克風，請開啟權限後重新錄音。';out.className='feedback bad';addError('silence');return}const stop=()=>{if(recorder.state!=='inactive')recorder.stop()};const r=new Recognition();r.lang='en-US';r.maxAlternatives=5;let heard=false;out.textContent='正在聽…請說 cat';out.className='feedback';r.onspeechstart=()=>heard=true;r.onresult=e=>{heard=true;stop();const best=[...e.results[0]].map(x=>({word:x.transcript,score:similarity('cat',x.transcript)})).sort((a,b)=>b.score-a.score)[0];meter.style.width=`${best.score}%`;if(best.score>=80){out.textContent=`通過！辨識為「${best.word}」，相似度 ${best.score}% ⭐`;out.className='feedback good';state.stars++;improve('vowel');renderStudent()}else{out.textContent=`相似度 ${best.score}%，未達80%，請重新發音。`;out.className='feedback bad';addError('vowel')}};r.onerror=e=>{stop();out.textContent=e.error==='no-speech'?'沒有偵測到聲音，請重新發音。':'麥克風或辨識失敗，請重新發音。';out.className='feedback bad';addError('silence')};r.onend=()=>{stop();if(!heard&&out.textContent.includes('正在聽')){out.textContent='沒有偵測到聲音，請重新發音。';out.className='feedback bad';addError('silence')}};try{r.start()}catch{stop();out.textContent='麥克風尚未準備好，請再試一次。';out.className='feedback bad'}};
-  renderStudent();
+  renderStudent();updateDynamicZhuyin();
 </script>
 </body>
 </html>
