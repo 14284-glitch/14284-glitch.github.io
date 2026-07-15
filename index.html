@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>自主練習英文</title>
+  <style>
+    :root{--bg:#fffaf2;--paper:#fff;--ink:#263238;--muted:#66757d;--primary:#ef6c45;--primary2:#ff9b61;--soft:#fff0e5;--green:#2e9b72;--red:#d94c4c;--line:#eadfd5;--shadow:0 12px 34px rgba(78,52,36,.09)}
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(145deg,#fffaf2,#f5fbff);color:var(--ink);font-family:system-ui,"Noto Sans TC",sans-serif} button,select,input{font:inherit} button{cursor:pointer}.app{max-width:1100px;margin:auto;padding:20px}.app.locked{display:none}.login{min-height:100vh;display:grid;place-items:center;padding:20px}.login.hidden{display:none}.login-box{width:min(420px,100%);background:var(--paper);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:30px;text-align:center}.login-box .logo{margin:0 auto 12px}.login-box h1{font-size:24px;margin:0}.login-box p{color:var(--muted)}.login-box input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;margin:8px 0}.login-box button{width:100%;margin-top:8px}.login-error{min-height:24px;color:var(--red);font-weight:700}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800}.logo{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--soft);font-size:28px}.student-select{display:flex;align-items:center;gap:8px}.student-select select{border:1px solid var(--line);border-radius:12px;padding:10px 34px 10px 12px;background:var(--paper)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.stat,.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.stat{padding:14px 16px}.stat small{display:block;color:var(--muted)}.stat strong{font-size:20px}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}.tab,.btn{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;padding:11px 14px;font-weight:700}.tab.active,.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}.panel{display:none}.panel.active{display:block}.card{padding:22px}.lesson-head{display:flex;justify-content:space-between;align-items:start;gap:14px;flex-wrap:wrap}.lesson-head h2,.lesson-head p{margin:0}.lesson-head p{color:var(--muted);margin-top:4px}.badge{background:var(--soft);color:#9a472c;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}.phonics{display:grid;grid-template-columns:.8fr 1.2fr;gap:20px;align-items:center;margin-top:22px}.letter{text-align:center;font-size:100px;line-height:1;color:var(--primary);font-weight:900}.ipa{text-align:center;font-size:28px}.word-box{text-align:center;padding:24px;background:var(--soft);border-radius:18px}.emoji{font-size:78px}.word{font-size:38px;font-weight:900;letter-spacing:2px}.word em{font-style:normal;color:var(--primary)}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}.feedback{min-height:30px;text-align:center;margin:14px 0;font-weight:700}.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}audio{width:min(420px,100%)}.meter{height:10px;background:#eee4dc;border-radius:999px;overflow:hidden}.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));width:0;transition:.3s}.sound-parts{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0}.sound{border:0;border-radius:14px;background:var(--soft);padding:16px 20px;font-size:24px;font-weight:800}.quiz{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.quiz button{min-height:120px}.quiz .qemoji{display:block;font-size:48px}.mistakes{display:grid;gap:10px;margin-top:18px}.mistake{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:12px 0}.mistake:last-child{border:0}.count{color:var(--red);font-weight:800}.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.level{border:1px solid var(--line);border-radius:15px;padding:14px;background:var(--paper);text-align:left}.level.current{border:2px solid var(--primary);background:var(--soft)}.level strong,.level small{display:block}.level small{color:var(--muted);margin-top:5px}.roster{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}.person{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:14px;text-align:center}.person.active{border:2px solid var(--primary);background:var(--soft)}.person span{display:block;font-size:28px}.note{color:var(--muted);font-size:13px;margin-top:12px}.hidden{display:none!important}@media(max-width:700px){.app{padding:12px}.stats{grid-template-columns:1fr}.tabs{grid-template-columns:repeat(2,1fr)}.phonics{grid-template-columns:1fr}.quiz{grid-template-columns:1fr}.levels{grid-template-columns:repeat(2,1fr)}.roster{grid-template-columns:repeat(2,1fr)}.letter{font-size:78px}.mistake{grid-template-columns:1fr auto}.mistake .listen{grid-column:1/-1}}
+  </style>
+</head>
+<body>
+<section class="login" id="loginScreen">
+  <form class="login-box" id="loginForm">
+    <div class="logo">🦊</div>
+    <h1>自主練習英文</h1>
+    <p>請先選擇學習者，再輸入專屬密碼。</p>
+    <label for="loginStudent">選擇學習者</label>
+    <select id="loginStudent" required style="width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;margin:8px 0;background:var(--paper)">
+      <option value="">請選擇</option>
+      <option value="0">01 仁偉</option><option value="1">02 怡恩</option><option value="2">03 雨葳</option><option value="3">04 可芸</option><option value="4">05 星岑</option>
+      <option value="5">06 若綺</option><option value="6">07 晨熙</option><option value="7">08 晨楷</option><option value="8">09 測試1</option><option value="9">10 測試2</option>
+    </select>
+    <label for="password">登入密碼</label>
+    <input id="password" type="password" inputmode="numeric" autocomplete="current-password" required>
+    <div class="login-error" id="loginError" aria-live="polite"></div>
+    <button class="btn primary" type="submit">登入</button>
+  </form>
+</section>
+<main class="app locked" id="learningApp">
+  <header class="top">
+      <div class="brand"><span class="logo">🦊</span>自主練習英文</div>
+      <div class="student-select"><label>學習者 <select id="studentSelect" disabled></select></label><button class="btn" id="logoutBtn">登出</button></div>
+  </header>
+  <section class="stats">
+    <div class="stat"><small>目前程度</small><strong id="currentLevel">Lv.0 啟蒙</strong></div>
+    <div class="stat"><small>今天獲得</small><strong id="stars">⭐ 0</strong></div>
+    <div class="stat"><small>待加強</small><strong id="errorCount">0 項</strong></div>
+  </section>
+  <nav class="tabs" aria-label="主要功能">
+    <button class="tab active" data-panel="learn">🔤 發音學習</button>
+    <button class="tab" data-panel="practice">🎯 常錯練習</button>
+    <button class="tab" data-panel="roadmap">🗺️ 程度地圖</button>
+    <button class="tab" data-panel="classroom">👩‍🏫 學習者</button>
+  </nav>
+
+  <section class="panel active" id="learn">
+    <div class="card">
+      <div class="lesson-head"><div><h2>短母音 a：cat</h2><p>聽音 → 看嘴型 → 拆音 → 合音 → 錄音</p></div><span class="badge">通過門檻 80%</span></div>
+      <div class="phonics">
+        <div><div class="letter">A a</div><div class="ipa">/æ/<br><small>嘴巴張開、舌頭放低</small></div></div>
+        <div class="word-box"><div class="emoji">🐱</div><div class="word">c<em>a</em>t</div><div class="actions"><button class="btn" id="hearWord">🔊 聽示範</button><button class="btn" id="blendWord">🧩 拆音合音</button></div></div>
+      </div>
+      <div class="sound-parts"><button class="sound" data-say="K">c<br><small>/k/</small></button><span>＋</span><button class="sound" data-say="Ah">a<br><small>/æ/</small></button><span>＋</span><button class="sound" data-say="T">t<br><small>/t/</small></button></div>
+      <div class="meter"><span id="scoreMeter"></span></div>
+      <div class="feedback" id="recordFeedback">先聽示範，再按下麥克風說 cat</div>
+      <div class="actions"><button class="btn primary" id="recordBtn">🎙️ 錄音並判斷</button><audio id="playback" class="hidden" controls aria-label="播放孩子的發音"></audio></div>
+      <div class="quiz">
+        <button class="btn quizChoice" data-correct="1"><span class="qemoji">🐱</span>cat /æ/</button>
+        <button class="btn quizChoice"><span class="qemoji">🐶</span>dog /ɒ/</button>
+        <button class="btn quizChoice"><span class="qemoji">🐟</span>fish /ɪ/</button>
+      </div>
+      <div class="feedback" id="quizFeedback">選出中間有 /æ/ 的單字</div>
+    </div>
+  </section>
+
+  <section class="panel" id="practice">
+    <div class="card"><div class="lesson-head"><div><h2>我的常錯練習</h2><p>錯得越多，越優先出現；答對後會逐步減少。</p></div><button class="btn" id="clearErrors">清除紀錄</button></div><div class="mistakes" id="mistakeList"></div></div>
+  </section>
+
+  <section class="panel" id="roadmap">
+    <div class="card"><div class="lesson-head"><div><h2>零基礎到 TOEIC 850</h2><p>達成升級條件後再進入下一階段。</p></div><span class="badge">8個階段</span></div><div class="levels" id="levelGrid"></div><div class="feedback" id="levelDetail"></div></div>
+  </section>
+
+  <section class="panel" id="classroom">
+    <div class="card"><div class="lesson-head"><div><h2>10位學習者</h2><p>每位學習者的進度與錯題分開保存。</p></div></div><div class="roster" id="roster"></div><p class="note">此試作版的資料保存在目前瀏覽器；正式多人系統需使用帳號與雲端資料庫。</p></div>
+  </section>
+</main>
+<script>
+  const loginScreen=document.querySelector('#loginScreen'),learningApp=document.querySelector('#learningApp');
+  function unlock(){loginScreen.classList.add('hidden');learningApp.classList.remove('locked')}
+  if(sessionStorage.getItem('fox-login')==='ok'&&sessionStorage.getItem('fox-student')!==null)unlock();
+  document.querySelector('#loginForm').onsubmit=e=>{e.preventDefault();const input=document.querySelector('#password'),chosen=document.querySelector('#loginStudent').value,expected=chosen===''?'':String(Number(chosen)+1).padStart(2,'0');if(chosen!==''&&input.value===expected){sessionStorage.setItem('fox-login','ok');sessionStorage.setItem('fox-student',chosen);document.querySelector('#loginError').textContent='';unlock();state.student=Number(chosen);renderStudent()}else{document.querySelector('#loginError').textContent=chosen===''?'請先選擇學習者。':'密碼錯誤，請重新輸入。';input.select()}};
+  const students=['01 仁偉','02 怡恩','03 雨葳','04 可芸','05 星岑','06 若綺','07 晨熙','08 晨楷','09 測試1','10 測試2'];
+  const avatars=['🐼','🐰','🐯','🐨','🐧','🦁','🦊','🐬','🦉','🦅'];
+  const levels=[['Lv.0 啟蒙','字母音、嘴型、100個圖像單字'],['Lv.1 拼讀','自然拼讀、CVC、300字'],['Lv.2 基礎 A1','生活句型、800字'],['Lv.3 日常 A2','完整對話、1,500字'],['Lv.4 進階 B1','職場入門、TOEIC 450+'],['Lv.5 職場 B1+','TOEIC 600+'],['Lv.6 高階 B2','TOEIC 730+'],['Lv.7 達標','TOEIC 850']];
+  const state={student:Number(sessionStorage.getItem('fox-student')||0),stars:0};
+  const key=()=>`fox-errors-${state.student}`;
+  const loadErrors=()=>{try{return JSON.parse(localStorage.getItem(key())||'{}')}catch{return {}}};
+  const saveErrors=e=>localStorage.setItem(key(),JSON.stringify(e));
+  const addError=(type)=>{const e=loadErrors();e[type]=(e[type]||0)+1;saveErrors(e);renderErrors()};
+  const improve=(type)=>{const e=loadErrors();if(e[type])e[type]=Math.max(0,e[type]-1);saveErrors(e);renderErrors()};
+  const say=(text,rate=.7)=>{if(!speechSynthesis)return; speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;speechSynthesis.speak(u)};
+  const similarity=(a,b)=>{a=a.toLowerCase().replace(/[^a-z]/g,'');b=b.toLowerCase().replace(/[^a-z]/g,'');if(!a||!b)return 0;const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return Math.max(0,Math.round((1-d[a.length][b.length]/Math.max(a.length,b.length))*100))};
+  const catalog={vowel:{name:'cat 的 /æ/ 發音',tip:'嘴巴張開、舌頭放低，再念 /k/—/æ/—/t/。',say:'K. Ah. T. Cat.'},silence:{name:'麥克風沒有聲音',tip:'靠近麥克風，在安靜環境清楚念 cat。',say:'Cat.'},listen:{name:'短母音 /æ/ 聽辨',tip:'比較 cat、dog、fish 的中間母音。',say:'Cat. Dog. Fish. Cat.'}};
+  function renderErrors(){const e=loadErrors(),entries=Object.entries(e).filter(([,n])=>n>0).sort((a,b)=>b[1]-a[1]);document.querySelector('#errorCount').textContent=`${entries.length} 項`;document.querySelector('#mistakeList').innerHTML=entries.length?entries.map(([k,n])=>`<div class="mistake"><div><strong>${catalog[k].name}</strong><br><small>${catalog[k].tip}</small></div><span class="count">錯 ${n} 次</span><button class="btn listen" data-error="${k}">🔊 練習</button></div>`).join(''):'<div class="feedback good">目前沒有錯題，繼續保持！</div>';document.querySelectorAll('[data-error]').forEach(b=>b.onclick=()=>say(catalog[b.dataset.error].say))}
+  function renderStudent(){document.querySelector('#studentSelect').value=state.student;document.querySelector('#stars').textContent=`⭐ ${state.stars}`;document.querySelector('#roster').innerHTML=students.map((n,i)=>`<div class="person ${i===state.student?'active':''}"><span>${avatars[i]}</span>${n}${i===state.student?'<small>目前登入</small>':''}</div>`).join('');renderErrors()}
+  function switchStudent(i){state.student=i;state.stars=0;renderStudent()}
+  document.querySelector('#studentSelect').innerHTML=students.map((n,i)=>`<option value="${i}">${n}</option>`).join('');
+  document.querySelector('#logoutBtn').onclick=()=>{sessionStorage.removeItem('fox-login');sessionStorage.removeItem('fox-student');learningApp.classList.add('locked');loginScreen.classList.remove('hidden');document.querySelector('#password').value='';document.querySelector('#loginStudent').value=''};
+  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===b.dataset.panel))});
+  document.querySelector('#hearWord').onclick=()=>say('Cat.');document.querySelector('#blendWord').onclick=()=>say('K. Ah. T. Cat.',.58);document.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>say(b.dataset.say));
+  document.querySelectorAll('.quizChoice').forEach(b=>b.onclick=()=>{const out=document.querySelector('#quizFeedback');if(b.dataset.correct){out.textContent='答對了！cat 中間是 /æ/ ⭐';out.className='feedback good';state.stars++;improve('listen');renderStudent()}else{out.textContent='再聽一次，找出嘴巴張開的 /æ/。';out.className='feedback bad';addError('listen')}});
+  document.querySelector('#clearErrors').onclick=()=>{saveErrors({});renderErrors()};
+  document.querySelector('#levelGrid').innerHTML=levels.map((l,i)=>`<button class="level ${i===0?'current':''}" data-level="${i}"><strong>${l[0]}</strong><small>${l[1]}</small></button>`).join('');document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-level]').forEach(x=>x.classList.toggle('current',x===b));document.querySelector('#levelDetail').textContent=`${levels[b.dataset.level][0]}：${levels[b.dataset.level][1]}`});
+  document.querySelector('#recordBtn').onclick=async()=>{const out=document.querySelector('#recordFeedback'),meter=document.querySelector('#scoreMeter'),audio=document.querySelector('#playback'),Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Recognition){out.textContent='此瀏覽器不支援語音判斷，請改用 Chrome 或 Edge。';out.className='feedback bad';return}let stream,recorder,chunks=[];try{stream=await navigator.mediaDevices.getUserMedia({audio:true});recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{if(chunks.length){if(audio.src)URL.revokeObjectURL(audio.src);audio.src=URL.createObjectURL(new Blob(chunks,{type:recorder.mimeType||'audio/webm'}));audio.classList.remove('hidden')}stream.getTracks().forEach(t=>t.stop())};recorder.start()}catch{out.textContent='無法使用麥克風，請開啟權限後重新錄音。';out.className='feedback bad';addError('silence');return}const stop=()=>{if(recorder.state!=='inactive')recorder.stop()};const r=new Recognition();r.lang='en-US';r.maxAlternatives=5;let heard=false;out.textContent='正在聽…請說 cat';out.className='feedback';r.onspeechstart=()=>heard=true;r.onresult=e=>{heard=true;stop();const best=[...e.results[0]].map(x=>({word:x.transcript,score:similarity('cat',x.transcript)})).sort((a,b)=>b.score-a.score)[0];meter.style.width=`${best.score}%`;if(best.score>=80){out.textContent=`通過！辨識為「${best.word}」，相似度 ${best.score}% ⭐`;out.className='feedback good';state.stars++;improve('vowel');renderStudent()}else{out.textContent=`相似度 ${best.score}%，未達80%，請重新發音。`;out.className='feedback bad';addError('vowel')}};r.onerror=e=>{stop();out.textContent=e.error==='no-speech'?'沒有偵測到聲音，請重新發音。':'麥克風或辨識失敗，請重新發音。';out.className='feedback bad';addError('silence')};r.onend=()=>{stop();if(!heard&&out.textContent.includes('正在聽')){out.textContent='沒有偵測到聲音，請重新發音。';out.className='feedback bad';addError('silence')}};try{r.start()}catch{stop();out.textContent='麥克風尚未準備好，請再試一次。';out.className='feedback bad'}};
+  renderStudent();
+</script>
+</body>
+</html>
