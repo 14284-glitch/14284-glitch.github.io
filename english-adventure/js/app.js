@@ -4,7 +4,7 @@ const AdventureApp=(()=>{
   const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
   const topic=()=>TOPICS.find(t=>t.id===topicId),items=()=>LEARNING_DATA.filter(x=>x.category===topicId);
   const cardRecord=id=>state.cards[id]||{collected:false,favorite:false,correct:0,wrong:0,mastery:0};
-  const names=["仁偉","怡恩","雨葳","可芸","星岑","若綺","宸熙","宸楷","苡瑄","辰淮","測試1","測試2"];
+  const names=["仁偉","怡恩","雨葳","可芸","星岑","若綺","宸熙","宸愷","苡瑄","辰淮","測試1","測試2"];
   const learnerName=()=>names[Number(AdventureStorage.learner())]||"小小探險家";
   const completion=id=>Math.min(100,Math.round(((state.topicWins[id]||0)/5)*100));
   function persist(){AdventureStorage.save(state);renderHeader()}
