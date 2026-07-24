@@ -20,7 +20,7 @@
     <select id="loginStudent" required style="width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;margin:8px 0;background:var(--paper)">
       <option value="">請選擇</option>
       <option value="0">01 仁偉</option><option value="1">02 怡恩</option><option value="2">03 雨葳</option><option value="3">04 可芸</option><option value="4">05 星岑</option>
-      <option value="5">06 若綺</option><option value="6">07 宸熙</option><option value="7">08 宸楷</option><option value="8">09 苡瑄</option><option value="9">10 辰淮</option>
+      <option value="5">06 若綺</option><option value="6">07 宸熙</option><option value="7">08 宸愷</option><option value="8">09 苡瑄</option><option value="9">10 辰淮</option>
       <option value="10">11 測試1</option><option value="11">12 測試2</option><option value="admin">管理者</option>
     </select>
     <label for="password">登入密碼</label>
@@ -84,7 +84,7 @@
   function unlock(){loginScreen.classList.add('hidden');learningApp.classList.remove('locked')}
   if(sessionStorage.getItem('fox-login')==='ok'&&sessionStorage.getItem('fox-student')!==null)unlock();
   document.querySelector('#loginForm').onsubmit=e=>{e.preventDefault();const input=document.querySelector('#password'),chosen=document.querySelector('#loginStudent').value,isAdmin=chosen==='admin',expected=isAdmin?'123456':chosen===''?'':String(Number(chosen)+1).padStart(2,'0');if(chosen!==''&&input.value===expected){sessionStorage.setItem('fox-login','ok');sessionStorage.setItem('fox-admin',isAdmin?'yes':'no');sessionStorage.setItem('fox-student',isAdmin?'0':chosen);document.querySelector('#loginError').textContent='';unlock();state.admin=isAdmin;state.student=isAdmin?0:Number(chosen);renderStudent()}else{document.querySelector('#loginError').textContent=chosen===''?'請先選擇學習者。':'密碼錯誤，請重新輸入。';input.select()}};
-  const students=['01 仁偉','02 怡恩','03 雨葳','04 可芸','05 星岑','06 若綺','07 宸熙','08 宸楷','09 苡瑄','10 辰淮','11 測試1','12 測試2'];
+  const students=['01 仁偉','02 怡恩','03 雨葳','04 可芸','05 星岑','06 若綺','07 宸熙','08 宸愷','09 苡瑄','10 辰淮','11 測試1','12 測試2'];
   const studentZhuyin=['ㄖㄣˊ ㄨㄟˇ','ㄧˊ ㄣ','ㄩˇ ㄨㄟ','ㄎㄜˇ ㄩㄣˊ','ㄒㄧㄥ ㄘㄣˊ','ㄖㄨㄛˋ ㄑㄧˇ','ㄔㄣˊ ㄒㄧ','ㄔㄣˊ ㄎㄞˇ','ㄧˇ ㄒㄩㄢ','ㄔㄣˊ ㄏㄨㄞˊ','ㄘㄜˋ ㄕˋ ㄧ','ㄘㄜˋ ㄕˋ ㄦˋ'];
   const avatars=['🐼','🐰','🐯','🐨','🐧','🦁','🦊','🐬','🦉','🦅','🐻','🐹'];
   const levels=[['Lv.0 啟蒙','字母音、嘴型、100個圖像單字'],['Lv.1 拼讀','自然拼讀、CVC、300字'],['Lv.2 基礎 A1','生活句型、800字'],['Lv.3 日常 A2','完整對話、1,500字'],['Lv.4 進階 B1','職場入門、TOEIC 450+'],['Lv.5 職場 B1+','TOEIC 600+'],['Lv.6 高階 B2','TOEIC 730+'],['Lv.7 達標','TOEIC 850']];
