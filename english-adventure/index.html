@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#5d68d8">
+  <title>English Adventure 英語生活大冒險</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="game-header">
+    <a class="back-link" href="../index.html" aria-label="回到自主練習英文">← 返回學習</a>
+    <div class="brand"><span aria-hidden="true">🦊</span><strong>English Adventure</strong></div>
+    <div class="player-stats" aria-label="玩家資料">
+      <span id="playerName">小小探險家</span>
+      <span id="levelLabel">Lv.1</span>
+      <span id="starLabel">⭐ 0</span>
+      <button class="icon-button" id="soundToggle" aria-label="關閉音效" aria-pressed="true">🔊</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="view active" id="homeView">
+      <div class="hero">
+        <div class="buddy" id="buddy" aria-label="學習夥伴小狐狸">🦊</div>
+        <div>
+          <p class="eyebrow">今天也一起開口說英文！</p>
+          <h1>英語生活大冒險</h1>
+          <p id="buddyMessage">選一個生活地圖，收集你的第一張英文卡牌吧！</p>
+          <div class="progress" aria-label="目前經驗值"><span id="xpBar"></span></div>
+          <button class="primary big" id="continueButton">▶ 繼續學習</button>
+        </div>
+        <aside class="daily-card">
+          <strong>🎯 今日任務</strong>
+          <p>完成 3 次挑戰</p>
+          <span id="dailyProgress">0 / 3</span>
+        </aside>
+      </div>
+
+      <section aria-labelledby="mapTitle">
+        <div class="section-title"><div><p class="eyebrow">生活情境地圖</p><h2 id="mapTitle">選擇冒險地點</h2></div><button class="soft-button" data-open="recordsView">📊 學習紀錄</button></div>
+        <div class="map-grid" id="mapGrid"></div>
+      </section>
+
+      <section class="dashboard-row">
+        <button class="dashboard-card" data-open="collectionView"><span>🗂️</span><strong>卡牌圖鑑</strong><small id="collectionSummary">已收藏 0 / 60</small></button>
+        <button class="dashboard-card" data-open="badgesView"><span>🏅</span><strong>成就徽章</strong><small id="badgeSummary">獲得 0 / 6</small></button>
+        <button class="dashboard-card" data-open="recordsView"><span>👨‍👩‍👧</span><strong>家長專區</strong><small>查看學習成果</small></button>
+      </section>
+    </section>
+
+    <section class="view" id="topicView">
+      <div class="view-toolbar"><button class="soft-button" data-open="homeView">← 地圖</button><div><p class="eyebrow" id="topicEnglish"></p><h2 id="topicTitle"></h2></div><span class="pill" id="topicProgress"></span></div>
+      <div class="mode-picker" aria-label="遊戲模式">
+        <button data-mode="cards" class="active">🃏 學習卡牌</button>
+        <button data-mode="picture">🖼️ 看圖選句子</button>
+        <button data-mode="listen">🎧 聽聲選圖片</button>
+        <button data-mode="order">🧩 句子排序</button>
+      </div>
+      <div id="topicContent"></div>
+    </section>
+
+    <section class="view" id="collectionView">
+      <div class="view-toolbar"><button class="soft-button" data-open="homeView">← 首頁</button><h2>🗂️ 卡牌圖鑑</h2><span class="pill" id="collectionCount"></span></div>
+      <div class="filter-row" id="collectionFilters"></div>
+      <div class="card-grid" id="collectionGrid"></div>
+    </section>
+
+    <section class="view" id="badgesView">
+      <div class="view-toolbar"><button class="soft-button" data-open="homeView">← 首頁</button><h2>🏅 成就徽章</h2></div>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </section>
+
+    <section class="view" id="recordsView">
+      <div class="view-toolbar"><button class="soft-button" data-open="homeView">← 首頁</button><h2>👨‍👩‍👧 家長／教師專區</h2></div>
+      <div class="record-grid" id="recordStats"></div>
+      <div class="record-panel"><h3>最近 7 天學習紀錄</h3><div class="week-chart" id="weekChart"></div></div>
+      <div class="record-panel"><h3>各主題完成度</h3><div id="topicRecords"></div></div>
+      <div class="record-panel"><h3>常答錯的句子</h3><div id="mistakeRecords"></div></div>
+      <button class="danger-button" id="clearProgress">清除這位學習者的遊戲紀錄</button>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal hidden" id="cardModal" role="dialog" aria-modal="true" aria-labelledby="modalPhrase">
+    <div class="modal-card"><button class="modal-close" id="closeModal" aria-label="關閉卡牌">×</button><div id="modalContent"></div></div>
+  </div>
+  <div class="tutorial hidden" id="tutorial" role="dialog" aria-modal="true" aria-labelledby="tutorialTitle">
+    <div><div class="buddy">🦊</div><h2 id="tutorialTitle">歡迎來到英語生活大冒險！</h2><p>選地圖、聽發音、翻卡牌，再完成小挑戰。答錯不扣星星，放心多試幾次！</p><button class="primary big" id="tutorialDone">我準備好了！</button></div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
